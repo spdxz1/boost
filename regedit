@@ -1,0 +1,53 @@
+*processos*
+HKEY_LOCAL_MACHINE  - SYSTEM - CurrentControlSet - Control]
+"SvcHostSplitThresholdInKB" = 04000000
+1.) ~Disable Dynamic Search Box~
+HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\SearchSettings
+
+Add Dword32: IsDynamicSearchBoxEnabled
+
+Values:
+0 = Disables
+1 = Enabled
+
+2.) ~Remove Bing from Start~
+HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Windows
+
+Add key: Explorer
+Add Dword32: DisableSearchBoxSuggestions
+Set value to 1
+
+3.) ~Bypass TPM and CPU checks for Windows Update~
+HKEY_LOCAL_MACHINE\SYSTEM\Setup\MoSetup
+
+Add Dword32: AllowUpgradesWithUnsupportedTPMOrCPU
+Change value from 0 to 1
+
+4.) ~Change Taskbar size~
+HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
+
+Add Dword32: TaskbarSi
+0 = smallest
+1 = defult
+2 = large
+
+5.) ~Move the taskbar~
+HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects3
+
+Double click on settings
+change 03 value under FE to 01
+
+00 Left side
+01 Top
+02 Right side
+03 Bottom
+
+Right, Left broken. Only Top, bottom works
+
+(Bonus) ~Restore context menu~
+HKEY_CURRENT_USER\SOFTWARE\CLASSES\CLSID\
+
+Add key: {86ca1aa0-34aa-4e8b-a509-50c905bae2a2}
+Add key: InprocServer32
+open, then close (Default) in "InprocServer32" with no value
+restart explorer
